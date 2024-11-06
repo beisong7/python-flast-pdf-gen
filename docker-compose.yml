@@ -1,22 +1,22 @@
 version: '3.3'
 services:
-  pdfgen:
-    container_name: pdfgen
+  pyhtmlgenpdf:
+    container_name: pyhtmlgenpdf
     build: .
-    image: pdfgen:latest
+    image: pyhtmlgenpdf:latest
     restart: always
 
     labels:
       - traefik.enable=true
-      - traefik.http.routers.pdfgen-http.entrypoints=web
-      - traefik.http.routers.pdfgen-http.rule=Host(`pdfgen.micro.helpwritingresumes.com`)
-      - traefik.http.routers.pdfgen-http.middlewares=pdfgen-redirect-to-https
+      - traefik.http.routers.pyhtmlgenpdf-http.entrypoints=web
+      - traefik.http.routers.pyhtmlgenpdf-http.rule=Host(`pyhtmlgenpdf.staging.helpwritingresumes.com`)
+      - traefik.http.routers.pyhtmlgenpdf-http.middlewares=pyhtmlgenpdf-redirect-to-https
       # HTTPS router
-      - traefik.http.routers.pdfgen-https.entrypoints=web-secured
-      - traefik.http.routers.pdfgen-https.rule=Host(`pdfgen.micro.helpwritingresumes.com`)
-      - traefik.http.routers.pdfgen-https.tls=true
-      - traefik.http.routers.pdfgen-https.tls.certresolver=mytlschallenge
-      - traefik.http.middlewares.pdfgen-redirect-to-https.redirectscheme.scheme=https
+      - traefik.http.routers.pyhtmlgenpdf-https.entrypoints=web-secured
+      - traefik.http.routers.pyhtmlgenpdf-https.rule=Host(`pyhtmlgenpdf.staging.helpwritingresumes.com`)
+      - traefik.http.routers.pyhtmlgenpdf-https.tls=true
+      - traefik.http.routers.pyhtmlgenpdf-https.tls.certresolver=mytlschallenge
+      - traefik.http.middlewares.pyhtmlgenpdf-redirect-to-https.redirectscheme.scheme=https
     ports:
       - "5000:5000"
 

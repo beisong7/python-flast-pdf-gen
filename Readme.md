@@ -33,3 +33,8 @@ python app.py
 ```bash
 deactivate
 ```
+
+- generate requirements.txt
+```bash
+pip freeze > requirements.txt
+```

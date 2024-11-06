@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  pdfgen:
+    container_name: pdfgen
+    build: .
+    image: pdfgen:latest
+    restart: always
+
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.pdfgen-http.entrypoints=web
+      - traefik.http.routers.pdfgen-http.rule=Host(`pdfgen.micro.helpwritingresumes.com`)
+      - traefik.http.routers.pdfgen-http.middlewares=pdfgen-redirect-to-https
+      # HTTPS router
+      - traefik.http.routers.pdfgen-https.entrypoints=web-secured
+      - traefik.http.routers.pdfgen-https.rule=Host(`pdfgen.micro.helpwritingresumes.com`)
+      - traefik.http.routers.pdfgen-https.tls=true
+      - traefik.http.routers.pdfgen-https.tls.certresolver=mytlschallenge
+      - traefik.http.middlewares.pdfgen-redirect-to-https.redirectscheme.scheme=https
+    ports:
+      - "8002:80"
+
+networks:
+  default:
+    external:
+      name: proxy

@@ -18,7 +18,7 @@ services:
       - traefik.http.routers.pdfgen-https.tls.certresolver=mytlschallenge
       - traefik.http.middlewares.pdfgen-redirect-to-https.redirectscheme.scheme=https
     ports:
-      - "8002:80"
+      - "5000:5000"
 
 networks:
   default:

@@ -38,7 +38,7 @@ class GenerateController:
 
                 # Serve the file URL
                 file_url = url_for('static', filename=f'generated/{file_name}', _external=True)
-                return jsonify({"status": "success", "url": file_url}), 200
+                return jsonify({"status": "success", "url": file_url, "path": file_path}), 200
 
             except OSError as e:
                 return jsonify({"error": f"Failed to generate PDF: {str(e)}"}), 500

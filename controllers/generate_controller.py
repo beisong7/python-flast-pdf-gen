@@ -22,15 +22,17 @@ class GenerateController:
             os.makedirs(generated_dir, exist_ok=True)
 
             # Generate a unique name for the PDF file
-            filename = f"{int(time.time())}_file.pdf"
-            file_path = os.path.join(generated_dir, filename)
+            file_name = f"{int(time.time())}_file.pdf"
+            file_path = os.path.join(generated_dir, file_name)
+
+            print(file_path)
 
             try:
                 # Generate PDF from HTML content
                 pdfkit.from_string(decoded_html, file_path)
 
                 # Serve the file URL
-                file_url = url_for('generated', filename=f'{filename}', _external=True)
+                file_url = url_for('static', filename=f'generated/{file_name}', _external=True)
                 return jsonify({"status": "success", "url": file_url}), 200
 
             except OSError as e:

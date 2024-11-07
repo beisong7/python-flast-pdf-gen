@@ -3,6 +3,7 @@ import base64
 import time
 import pdfkit
 import os
+import logging
 
 
 class GenerateController:
@@ -25,7 +26,9 @@ class GenerateController:
             file_name = f"{int(time.time())}_file.pdf"
             file_path = os.path.join(generated_dir, file_name)
 
-            print(file_path)
+            logging.debug(file_path)
+            logging.info(file_path)
+            
 
             try:
                 # Generate PDF from HTML content

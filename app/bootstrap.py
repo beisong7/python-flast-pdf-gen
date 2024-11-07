@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, send_from_directory
 # from routes import user_routes, home
 import os
 import importlib
@@ -36,11 +36,17 @@ def bootstrap_services(app):
                             print(f"Blueprint {blueprint.name} is already registered.")
                         # app.register_blueprint(blueprint)
 
-    
     # Register error handlers
     register_error_handlers(app)
 
     # Register middlewares
     # register_middleware(app)
 
+
     # Register auth middleware
+
+    # Serve files in the generated directory
+    @app.route('/generated/<path:filename>')
+    def serve_generated_file(filename):
+        return send_from_directory(os.path.join(app.root_path, 'generated'), filename)
+

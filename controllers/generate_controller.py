@@ -19,7 +19,7 @@ class GenerateController:
             # Use an absolute path for the generated directory
             current_dir = os.path.abspath(os.path.dirname(__file__))
             root_dir = os.path.abspath(os.path.join(current_dir, '../'))
-            generated_dir = os.path.join(root_dir, '..', 'generated')
+            generated_dir = os.path.join(root_dir, 'generated')
             os.makedirs(generated_dir, exist_ok=True)
 
             # Generate a unique name for the PDF file

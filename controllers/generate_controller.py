@@ -37,7 +37,7 @@ class GenerateController:
                 pdfkit.from_string(decoded_html, file_path)
 
                 # Serve the file URL
-                file_url = url_for('static', filename=f'generated/{file_name}', _external=True)
+                file_url = url_for('generated', filename=f'{file_name}', _external=True)
                 return jsonify({"status": "success", "url": file_url, "file_path": file_path, "current_dir": current_dir, "root_dir": root_dir, "generated_dir": generated_dir}), 200
 
             except OSError as e:

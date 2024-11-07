@@ -22,7 +22,7 @@ class GenerateController:
             os.makedirs(generated_dir, exist_ok=True)
 
             # Generate a unique name for the PDF file
-            filename = f"generated/{int(time.time())}_file.pdf"
+            filename = f"{int(time.time())}_file.pdf"
             file_path = os.path.join(generated_dir, filename)
 
             try:

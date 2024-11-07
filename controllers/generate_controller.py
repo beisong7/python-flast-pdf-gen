@@ -28,7 +28,9 @@ class GenerateController:
 
             logging.debug(file_path)
             logging.info(file_path)
-            
+            print("get path")
+            print(file_path)
+            print(file_name)
 
             try:
                 # Generate PDF from HTML content
